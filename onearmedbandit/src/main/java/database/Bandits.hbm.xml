@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-08-28 22:26:56 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Bandits" table="bandits" catalog="one_arm_bandit">
+        <id name="gameId" type="java.lang.Integer">
+            <column name="gameId" />
+            <generator class="identity" />
+        </id>
+        <property name="banditName" type="string">
+            <column name="banditName" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="jackpot" type="double">
+            <column name="jackpot" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="banditssymbolses" table="banditssymbols" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gameId" not-null="true" />
+            </key>
+            <one-to-many class="Banditssymbols" />
+        </set>
+        <set name="banditsprizeses" table="banditsprizes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gameId" not-null="true" />
+            </key>
+            <one-to-many class="Banditsprizes" />
+        </set>
+        <set name="banditsstakeses" table="banditsstakes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gameId" not-null="true" />
+            </key>
+            <one-to-many class="Banditsstakes" />
+        </set>
+    </class>
+</hibernate-mapping>

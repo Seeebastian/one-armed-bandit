@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-08-28 22:26:56 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Stakes" table="stakes" catalog="one_arm_bandit">
+        <id name="stakeId" type="java.lang.Integer">
+            <column name="stakeId" />
+            <generator class="identity" />
+        </id>
+        <property name="stakeHeight" type="int">
+            <column name="stakeHeight" not-null="true" />
+        </property>
+        <set name="banditsstakeses" table="banditsstakes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stakeId" not-null="true" />
+            </key>
+            <one-to-many class="Banditsstakes" />
+        </set>
+    </class>
+</hibernate-mapping>
