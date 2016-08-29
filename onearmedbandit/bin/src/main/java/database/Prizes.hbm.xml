@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-08-28 22:26:56 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Prizes" table="prizes" catalog="one_arm_bandit">
+        <id name="prizeId" type="java.lang.Integer">
+            <column name="prizeId" />
+            <generator class="identity" />
+        </id>
+        <property name="prizeHeight" type="string">
+            <column name="prizeHeight" length="20" not-null="true" unique="true" />
+        </property>
+        <set name="banditsprizeses" table="banditsprizes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prizeId" not-null="true" />
+            </key>
+            <one-to-many class="Banditsprizes" />
+        </set>
+    </class>
+</hibernate-mapping>
